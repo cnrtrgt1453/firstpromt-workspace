@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caner</title>
+<title>En İyi 5 Promptum</title>
 <style>
   :root {
     --bg: #e6d9bd;
@@ -12,6 +12,7 @@
     --accent: #2563eb;
     --border: #d3c6a4;
     --card-bg: #f2ecd9;
+    --code-bg: #eadfc4;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -21,6 +22,7 @@
       --accent: #60a5fa;
       --border: #232428;
       --card-bg: #141518;
+      --code-bg: #1c1d21;
     }
   }
   * {
@@ -28,82 +30,79 @@
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    max-width: 640px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 4rem 1.5rem;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     color: var(--text);
     background: var(--bg);
   }
-  .intro {
+  header {
     margin-bottom: 3rem;
   }
   .eyebrow {
     color: var(--accent);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
   h1 {
-    font-size: 4.8rem;
+    font-size: 2.6rem;
     margin: 0 0 0.75rem;
     letter-spacing: -0.02em;
   }
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
-  }
-  p {
-    color: var(--text);
-    margin: 0;
-  }
   .lead {
     color: var(--muted);
-    font-size: 1.15rem;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
   }
-  li {
+  .entry {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
   }
-  li:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
+  .entry-number {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
-  .shopping-list li {
-    background: #f0fdf4;
-    border-color: #bbf7d0;
-    color: #14532d;
+  .prompt {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-family: "SF Mono", Consolas, Menlo, monospace;
+    font-size: 0.92rem;
+    white-space: pre-wrap;
+    margin: 0 0 1rem;
+    color: var(--text);
   }
-  .shopping-list li:hover {
-    border-color: #22c55e;
+  .block {
+    margin-bottom: 0.85rem;
   }
-  @media (prefers-color-scheme: dark) {
-    .shopping-list li {
-      background: #14261c;
-      border-color: #22c55e;
-      color: #bbf7d0;
-    }
-    .shopping-list li:hover {
-      border-color: #4ade80;
-    }
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  .block-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+  .block p {
+    margin: 0;
   }
   footer {
-    margin-top: 3.5rem;
+    margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
     color: var(--muted);
@@ -112,51 +111,84 @@
 </style>
 </head>
 <body>
-  <div class="intro">
-    <div class="eyebrow">Hi, I'm</div>
-    <h1>Caner</h1>
+  <header>
+    <div class="eyebrow">Caner'in Prompt Günlüğü</div>
+    <h1>Şimdiye Kadarki En İyi 5 Promptum</h1>
     <p class="lead">
-      I'm currently learning how to build software with the help of AI coding tools —
-      picking up web development fundamentals and figuring out how to turn ideas into
-      working projects quickly.
+      Claude Code ile çalışırken yazdığım, işe yarayan ve bir şeyler öğrendiğim
+      5 prompt — tam metinleri, Claude'un ne yaptığı ve benim ne öğrendiğimle birlikte.
     </p>
-    <p class="lead">
-      Studying Mathematics (English) at Ege University.
-    </p>
-  </div>
+  </header>
 
-  <h2>Things I want to build</h2>
-  <ul>
-    <li>A personal portfolio site to showcase my projects</li>
-    <li>A small tool that automates a repetitive task in my daily life</li>
-    <li>A simple mobile app I can actually ship and use</li>
-  </ul>
+  <main>
+    <div class="entry">
+      <div class="entry-number">Prompt 1</div>
+      <div class="prompt">cheatsheet.md adında bir dosya yaz; içinde bir başlangıç seviyesindeki birinin ilk öğrenmesi gereken 10 shell komutu olsun. her biri için komutu, ne yaptığını anlatan tek satırı ve onu ne zaman kullanacağıma dair gerçek bir örneği yaz.</div>
+      <div class="block">
+        <div class="block-label">Claude ne yaptı</div>
+        <p>pwd, ls, cd, mkdir, touch, cp, mv, rm, cat ve grep komutlarını içeren bir cheatsheet.md dosyası oluşturdu; her komut için tek satırlık açıklama ve gerçekçi bir kullanım senaryosu ekledi.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">Ne öğrendim</div>
+        <p>İstenen çıktının formatını (komut + açıklama + örnek) net olarak tarif etmek, sonucu ilk seferde kullanılabilir hale getiriyor — ekstra düzeltme turuna gerek kalmıyor.</p>
+      </div>
+    </div>
 
-  <h2>Alışveriş listesi</h2>
-  <ul class="shopping-list">
-    <li>Ekmek</li>
-    <li>Süt</li>
-    <li>Yumurta</li>
-    <li>Domates</li>
-    <li>Peynir</li>
-  </ul>
+    <div class="entry">
+      <div class="entry-number">Prompt 2</div>
+      <div class="prompt">@index.html sayfasında bu komutları listele</div>
+      <div class="block">
+        <div class="block-label">Claude ne yaptı</div>
+        <p>cheatsheet.md'deki 10 komutu, index.html'in mevcut tasarım diline (kart görünümü, açık/koyu tema değişkenleri) uyacak şekilde yeni bir "Shell Cheatsheet" bölümü olarak sayfaya ekledi.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">Ne öğrendim</div>
+        <p>@dosya referansı vererek "bunu oraya taşı" demek, içeriği yeniden yazmaktan çok daha hızlı — Claude zaten var olan stille tutarlı bir şekilde entegre ediyor.</p>
+      </div>
+    </div>
 
-  <h2>Shell Cheatsheet</h2>
-  <ul>
-    <li><strong>pwd</strong> — Bulunduğun dizinin tam yolunu gösterir. <em>Örnek:</em> Bir proje klasöründe kayboldun, `pwd` ile tam olarak neredesin görürsün.</li>
-    <li><strong>ls</strong> — Bulunduğun dizindeki dosya ve klasörleri listeler. <em>Örnek:</em> İndirdiğin bir zip'in içine ne çıktığını görmek için `ls` çalıştırırsın.</li>
-    <li><strong>cd</strong> — Başka bir dizine geçmeni sağlar. <em>Örnek:</em> Masaüstündeki bir projeye girmek için `cd Desktop/proje-adi` yazarsın.</li>
-    <li><strong>mkdir</strong> — Yeni bir klasör oluşturur. <em>Örnek:</em> Yeni bir ödev için `mkdir odev-3` yazarak boş bir klasör açarsın.</li>
-    <li><strong>touch</strong> — Boş bir dosya oluşturur. <em>Örnek:</em> Yeni bir Python dosyasına başlamadan önce `touch main.py` ile boş dosyayı oluşturursun.</li>
-    <li><strong>cp</strong> — Bir dosyayı veya klasörü kopyalar. <em>Örnek:</em> `config.json`'ı bozmadan denemeler yapmak için `cp config.json config.backup.json` ile yedeğini alırsın.</li>
-    <li><strong>mv</strong> — Bir dosyayı taşır veya yeniden adlandırır. <em>Örnek:</em> `taslak.txt`'yi `rapor.txt` yapmak için `mv taslak.txt rapor.txt` kullanırsın.</li>
-    <li><strong>rm</strong> — Bir dosyayı (veya `-r` ile klasörü) siler; geri dönüşü yoktur. <em>Örnek:</em> Geçici bir log dosyasını silmek için `rm temp.log` yazarsın.</li>
-    <li><strong>cat</strong> — Bir dosyanın içeriğini terminalde gösterir. <em>Örnek:</em> `.env` dosyasının içinde ne yazdığını görmek için `cat .env` çalıştırırsın.</li>
-    <li><strong>grep</strong> — Dosya içinde belirli bir kelimeyi/örüntüyü arar. <em>Örnek:</em> Büyük bir log dosyasında "ERROR" geçen satırları bulmak için `grep "ERROR" app.log` kullanırsın.</li>
-  </ul>
+    <div class="entry">
+      <div class="entry-number">Prompt 3</div>
+      <div class="prompt">bunu github da pushla</div>
+      <div class="block">
+        <div class="block-label">Claude ne yaptı</div>
+        <p>Klasörün bir git deposu olmadığını ve gh CLI oturumunun geçersiz bir token'a sahip olduğunu tespit etti; işlemi durdurup bana ne yapmam gerektiğini (yeniden giriş yapmam gerektiğini) açıkça bildirdi.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">Ne öğrendim</div>
+        <p>"Pushla" demeden önce klasörün gerçekten bir git deposu olması gerektiğini, ve kimlik doğrulamanın kod yazmaktan ayrı bir adım olduğunu öğrendim — Claude bunu varsaymak yerine kontrol edip bana sordu.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-number">Prompt 4</div>
+      <div class="prompt">first-prompt-1 için bir git deposu yap</div>
+      <div class="block">
+        <div class="block-label">Claude ne yaptı</div>
+        <p>git init çalıştırdı, cheatsheet.md ve index.html dosyalarını stage'ledi, uygun bir commit mesajıyla ilk commit'i attı.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">Ne öğrendim</div>
+        <p>git init → add → commit sırasının her yeni proje için standart bir başlangıç akışı olduğunu, ve bunun push'tan tamamen ayrı bir adım olduğunu gördüm.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-number">Prompt 5</div>
+      <div class="prompt">https://github.com/cnrtrgt1453/firstpromt-workspace.git buraya pushla</div>
+      <div class="block">
+        <div class="block-label">Claude ne yaptı</div>
+        <p>Remote'u repoya ekledi (git remote add origin ...) ve master branch'ini push etti; Windows Git Credential Manager'ın gh CLI'dan bağımsız çalışıp kimlik doğrulamayı kendi başına hallettiğini fark etti.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">Ne öğrendim</div>
+        <p>gh CLI oturumu bozuk olsa bile git push'un ayrı bir kimlik doğrulama mekanizması (Credential Manager) kullanabildiğini öğrendim — "auth hatası var" demek her zaman push'un da başarısız olacağı anlamına gelmiyormuş.</p>
+      </div>
+    </div>
+  </main>
 
   <footer>
-    Built while learning — one project at a time.
+    Claude Code ile öğrenerek inşa ediliyor.
   </footer>
 </body>
 </html>
