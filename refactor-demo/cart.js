@@ -1,31 +1,23 @@
-function calc(a) {
-  let t = 0;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i].q > 0) {
-      t = t + a[i].p * a[i].q;
+function calculateBulkDiscount(items) {
+  let bulkDiscount = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].q > 0 && items[i].p > 100) {
+      bulkDiscount = bulkDiscount + items[i].p * items[i].q * 0.1;
     }
   }
-  let t2 = 0;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i].q > 0 && a[i].p > 100) {
-      t2 = t2 + a[i].p * a[i].q * 0.1;
-    }
-  }
-  let final;
-  if (t > 500) {
-    if (t2 > 0) {
-      final = t - t2 - 20;
-    } else {
-      final = t - 20;
-    }
-  } else {
-    if (t2 > 0) {
-      final = t - t2;
-    } else {
-      final = t;
-    }
-  }
-  return final;
+  return bulkDiscount;
 }
 
-module.exports = { calc };
+function calculateCartTotal(items) {
+  let subtotal = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].q > 0) {
+      subtotal = subtotal + items[i].p * items[i].q;
+    }
+  }
+  const bulkDiscount = calculateBulkDiscount(items);
+  const largeOrderDiscount = subtotal > 500 ? 20 : 0;
+  return subtotal - bulkDiscount - largeOrderDiscount;
+}
+
+module.exports = { calculateCartTotal };

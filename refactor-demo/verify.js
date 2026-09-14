@@ -1,4 +1,4 @@
-const { calc } = require("./cart.js");
+const { calculateCartTotal } = require("./cart.js");
 
 const cases = [
   [{ p: 50, q: 2 }, { p: 30, q: 1 }],
@@ -9,5 +9,5 @@ const cases = [
 ];
 
 for (const items of cases) {
-  console.log(JSON.stringify(items), "=>", calc(items));
+  console.log(JSON.stringify(items), "=>", calculateCartTotal(items));
 }

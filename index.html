@@ -101,6 +101,69 @@
   .block p {
     margin: 0;
   }
+  h2 {
+    font-size: 1.6rem;
+    margin: 3.5rem 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .section-intro {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  .refactor {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .refactor-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .refactor-tag {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  pre {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    font-family: "SF Mono", Consolas, Menlo, monospace;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    margin: 0 0 0.9rem;
+  }
+  pre.diff .rm { color: #dc2626; }
+  pre.diff .add { color: #16a34a; }
+  @media (prefers-color-scheme: dark) {
+    pre.diff .rm { color: #f87171; }
+    pre.diff .add { color: #4ade80; }
+  }
+  .why {
+    margin: 0 0 0.9rem;
+  }
+  .why strong {
+    color: var(--accent);
+  }
+  .verify {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    margin: 0;
+  }
+  .verify code {
+    font-family: "SF Mono", Consolas, Menlo, monospace;
+    font-size: 0.82rem;
+  }
   footer {
     margin-top: 3rem;
     padding-top: 1.5rem;
@@ -186,6 +249,118 @@
       </div>
     </div>
   </main>
+
+  <h2>Tek Dosyalık Refactor</h2>
+  <p class="section-intro">
+    Küçük bir kaynak dosya seçtim — bir sepet toplamı hesaplayan
+    <code>refactor-demo/cart.js</code> — ve Claude ile üç refactor yaptım: bir yeniden
+    adlandırma, bir çıkarma, bir sadeleştirme. Her adımdan sonra
+    <code>refactor-demo/verify.js</code> ile aynı 5 test senaryosunu çalıştırıp
+    çıktıların değişmediğini doğruladım.
+  </p>
+
+  <div class="refactor">
+    <div class="refactor-tag">Refactor 1 — Yeniden Adlandırma</div>
+    <div class="refactor-title">calc(a) → calculateCartTotal(items)</div>
+    <pre>function calc(a) {
+  let t = 0;
+  for (let i = 0; i &lt; a.length; i++) {
+    if (a[i].q &gt; 0) {
+      t = t + a[i].p * a[i].q;
+    }
+  }
+  let t2 = 0;
+  ...
+}</pre>
+    <pre class="diff">-function calc(a) {
+-  let t = 0;
++function calculateCartTotal(items) {
++  let subtotal = 0;
+   for (let i = 0; ...) {
+-    if (a[i].q &gt; 0) {
+-      t = t + a[i].p * a[i].q;
++    if (items[i].q &gt; 0) {
++      subtotal = subtotal + items[i].p * items[i].q;
+     }
+   }
+-  let t2 = 0;
++  let bulkDiscount = 0;
+   ...
+-  let final;
++  let total;
+   ...
+-module.exports = { calc };
++module.exports = { calculateCartTotal };</pre>
+    <p class="why"><strong>Neden daha anlaşılır:</strong> <code>a</code>, <code>t</code>, <code>t2</code>, <code>final</code> hiçbir şey anlatmıyordu; <code>items</code>, <code>subtotal</code>, <code>bulkDiscount</code>, <code>total</code> okuyan kişiye kodun ne hesapladığını değişkeni görür görmez söylüyor.</p>
+    <p class="verify">✅ Doğrulama: <code>node verify.js</code> — 5 test senaryosunun tamamı refactor öncesiyle birebir aynı sonucu verdi (ör. <code>[{"p":150,"q":4},{"p":20,"q":3}] =&gt; 580</code>).</p>
+  </div>
+
+  <div class="refactor">
+    <div class="refactor-tag">Refactor 2 — Çıkarma (Extract Function)</div>
+    <div class="refactor-title">İndirim döngüsü → calculateBulkDiscount(items)</div>
+    <pre>const bulkDiscount = calculateBulkDiscount(items);
+// eskiden calculateCartTotal içinde tekrar eden bir for döngüsüydü</pre>
+    <pre class="diff">+function calculateBulkDiscount(items) {
++  let bulkDiscount = 0;
++  for (let i = 0; i &lt; items.length; i++) {
++    if (items[i].q &gt; 0 &amp;&amp; items[i].p &gt; 100) {
++      bulkDiscount = bulkDiscount + items[i].p * items[i].q * 0.1;
++    }
++  }
++  return bulkDiscount;
++}
+
+ function calculateCartTotal(items) {
+   ...
+-  let bulkDiscount = 0;
+-  for (let i = 0; i &lt; items.length; i++) {
+-    if (items[i].q &gt; 0 &amp;&amp; items[i].p &gt; 100) {
+-      bulkDiscount = bulkDiscount + items[i].p * items[i].q * 0.1;
+-    }
+-  }
++  const bulkDiscount = calculateBulkDiscount(items);</pre>
+    <p class="why"><strong>Neden daha anlaşılır:</strong> <code>calculateCartTotal</code> artık tek bir işe odaklanıyor (toplamı hesaplamak) ve "toplu indirim nedir" sorusunun cevabı kendi adını taşıyan, ayrı test edilebilir bir fonksiyonda yaşıyor.</p>
+    <p class="verify">✅ Doğrulama: <code>node verify.js</code> — çıktılar yine değişmedi, çünkü mantık taşındı, değişmedi.</p>
+  </div>
+
+  <div class="refactor">
+    <div class="refactor-tag">Refactor 3 — Sadeleştirme</div>
+    <div class="refactor-title">İç içe if/else → tek satırlık ifade</div>
+    <pre>let total;
+if (subtotal &gt; 500) {
+  if (bulkDiscount &gt; 0) {
+    total = subtotal - bulkDiscount - 20;
+  } else {
+    total = subtotal - 20;
+  }
+} else {
+  if (bulkDiscount &gt; 0) {
+    total = subtotal - bulkDiscount;
+  } else {
+    total = subtotal;
+  }
+}
+return total;</pre>
+    <pre class="diff">-  let total;
+-  if (subtotal &gt; 500) {
+-    if (bulkDiscount &gt; 0) {
+-      total = subtotal - bulkDiscount - 20;
+-    } else {
+-      total = subtotal - 20;
+-    }
+-  } else {
+-    if (bulkDiscount &gt; 0) {
+-      total = subtotal - bulkDiscount;
+-    } else {
+-      total = subtotal;
+-    }
+-  }
+-  return total;
++  const largeOrderDiscount = subtotal &gt; 500 ? 20 : 0;
++  return subtotal - bulkDiscount - largeOrderDiscount;</pre>
+    <p class="why"><strong>Neden daha anlaşılır:</strong> 4 dallı iç içe if/else aslında sadece "500 üzeri siparişte 20 birim indirim uygulanır" diyordu; <code>bulkDiscount &gt; 0</code> kontrolü hiç gerekmiyordu çünkü 0 çıkarmanın etkisi zaten yok — bunu görüp kaldırmak dallanmayı tamamen ortadan kaldırdı.</p>
+    <p class="verify">✅ Doğrulama: <code>node verify.js</code> — 5 senaryonun 5'i de aynı sonucu verdi; davranış korundu.</p>
+  </div>
 
   <footer>
     Claude Code ile öğrenerek inşa ediliyor.
