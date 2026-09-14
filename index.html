@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caner</title>
+<style>
+  :root {
+    --bg: #e6d9bd;
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #2563eb;
+    --border: #d3c6a4;
+    --card-bg: #f2ecd9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a0b0d;
+      --text: #f0f0f0;
+      --muted: #a3a3a3;
+      --accent: #60a5fa;
+      --border: #232428;
+      --card-bg: #141518;
+    }
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+  }
+  .intro {
+    margin-bottom: 3rem;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 4.8rem;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  p {
+    color: var(--text);
+    margin: 0;
+  }
+  .lead {
+    color: var(--muted);
+    font-size: 1.15rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  li {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  li:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .shopping-list li {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #14532d;
+  }
+  .shopping-list li:hover {
+    border-color: #22c55e;
+  }
+  @media (prefers-color-scheme: dark) {
+    .shopping-list li {
+      background: #14261c;
+      border-color: #22c55e;
+      color: #bbf7d0;
+    }
+    .shopping-list li:hover {
+      border-color: #4ade80;
+    }
+  }
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+  <div class="intro">
+    <div class="eyebrow">Hi, I'm</div>
+    <h1>Caner</h1>
+    <p class="lead">
+      I'm currently learning how to build software with the help of AI coding tools —
+      picking up web development fundamentals and figuring out how to turn ideas into
+      working projects quickly.
+    </p>
+    <p class="lead">
+      Studying Mathematics (English) at Ege University.
+    </p>
+  </div>
+
+  <h2>Things I want to build</h2>
+  <ul>
+    <li>A personal portfolio site to showcase my projects</li>
+    <li>A small tool that automates a repetitive task in my daily life</li>
+    <li>A simple mobile app I can actually ship and use</li>
+  </ul>
+
+  <h2>Alışveriş listesi</h2>
+  <ul class="shopping-list">
+    <li>Ekmek</li>
+    <li>Süt</li>
+    <li>Yumurta</li>
+    <li>Domates</li>
+    <li>Peynir</li>
+  </ul>
+
+  <h2>Shell Cheatsheet</h2>
+  <ul>
+    <li><strong>pwd</strong> — Bulunduğun dizinin tam yolunu gösterir. <em>Örnek:</em> Bir proje klasöründe kayboldun, `pwd` ile tam olarak neredesin görürsün.</li>
+    <li><strong>ls</strong> — Bulunduğun dizindeki dosya ve klasörleri listeler. <em>Örnek:</em> İndirdiğin bir zip'in içine ne çıktığını görmek için `ls` çalıştırırsın.</li>
+    <li><strong>cd</strong> — Başka bir dizine geçmeni sağlar. <em>Örnek:</em> Masaüstündeki bir projeye girmek için `cd Desktop/proje-adi` yazarsın.</li>
+    <li><strong>mkdir</strong> — Yeni bir klasör oluşturur. <em>Örnek:</em> Yeni bir ödev için `mkdir odev-3` yazarak boş bir klasör açarsın.</li>
+    <li><strong>touch</strong> — Boş bir dosya oluşturur. <em>Örnek:</em> Yeni bir Python dosyasına başlamadan önce `touch main.py` ile boş dosyayı oluşturursun.</li>
+    <li><strong>cp</strong> — Bir dosyayı veya klasörü kopyalar. <em>Örnek:</em> `config.json`'ı bozmadan denemeler yapmak için `cp config.json config.backup.json` ile yedeğini alırsın.</li>
+    <li><strong>mv</strong> — Bir dosyayı taşır veya yeniden adlandırır. <em>Örnek:</em> `taslak.txt`'yi `rapor.txt` yapmak için `mv taslak.txt rapor.txt` kullanırsın.</li>
+    <li><strong>rm</strong> — Bir dosyayı (veya `-r` ile klasörü) siler; geri dönüşü yoktur. <em>Örnek:</em> Geçici bir log dosyasını silmek için `rm temp.log` yazarsın.</li>
+    <li><strong>cat</strong> — Bir dosyanın içeriğini terminalde gösterir. <em>Örnek:</em> `.env` dosyasının içinde ne yazdığını görmek için `cat .env` çalıştırırsın.</li>
+    <li><strong>grep</strong> — Dosya içinde belirli bir kelimeyi/örüntüyü arar. <em>Örnek:</em> Büyük bir log dosyasında "ERROR" geçen satırları bulmak için `grep "ERROR" app.log` kullanırsın.</li>
+  </ul>
+
+  <footer>
+    Built while learning — one project at a time.
+  </footer>
+</body>
+</html>
