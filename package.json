@@ -1,0 +1,24 @@
+{
+  "name": "first-prompt-1",
+  "version": "1.0.0",
+  "description": "Personal learning project: a single-page site plus a Vercel-deployed cheatsheet demo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node refactor-demo/verify.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnrtrgt1453/firstpromt-workspace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cnrtrgt1453/firstpromt-workspace/issues"
+  },
+  "homepage": "https://github.com/cnrtrgt1453/firstpromt-workspace#readme",
+  "devDependencies": {
+    "prettier": "^3.9.6"
+  }
+}
